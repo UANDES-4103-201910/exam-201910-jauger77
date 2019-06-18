@@ -5,15 +5,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <header>
+  <nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><strong>Z-Mobile</strong></a>
+  <div class="col-8 text-right">
+      <% if user_signed_in? %>
+    <a class="btn btn-light" <%= link_to "Edit Profile",edit_user_registration_path %> </a>
+    <a class="btn btn-light" <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </a>
+      <% else %>
+    <a class="btn btn-light" <%= link_to "Sign In", new_user_session_path %> </a>
+	  <a class="btn btn-light" <%= link_to "Sign Up", new_user_registration_path %> </a>
+     <% end %>
+  </div>
+  
+  </nav>
+  </header>
+
   <body>
   <div class="container">
+  
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
     <%= yield %>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
